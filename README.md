@@ -1,88 +1,72 @@
-# CHDdECG
-Scripts and modules for training and testing deep neural networks that conducts congenital heart disease detection using electrocardiogram (ECG).
-Companion code to the paper "Congenital Heart Disease Detection by Pediatric Electrocardiogram Based Deep Learning Integrated with Human Concepts".
+# Singapore-Malaysia Chinese Diachronic Corpus (1919-Present)
 
-<!-- https://www.xxxxxxxxx.com/
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+![Corpus Size](https://img.shields.io/badge/Size-~4.8M%20characters-blue.svg)
+![Time Span](https://img.shields.io/badge/Time%20Span-1919--Present-orange.svg)
 
---------------------
+A comprehensive diachronic corpus of Singapore-Malaysia Chinese language materials spanning from 1919 to present, covering three major domains: literature, news media, and educational textbooks.
 
-Citation:
-```
-Authors et al. Automatic Diagnosis of Congenital Heart Diseases from 9-Lead Pediatric Electrocardiogram Using Deep Neural Networks.
-journal. doi
-```
+## 📋 Corpus Overview
 
-Bibtex:
-```
-@article{,
-  title = {Automatic Diagnosis of Congenital Heart Diseases from 9-Lead Pediatric Electrocardiogram Using Deep Neural Networks},
-  author = {},
-  year = {},
-  volume = {},
-  pages = {},
-  doi = {},
-  journal = {},
-  number = {}
-}
-```
--------------------- -->
+According to Diao Yanbin (2018:161-174), the formation and development of Global Chinese primarily occurs through three channels: Chinese literature, Chinese media, and Chinese language education. This corpus is structured around these three domains:
 
-## Abstract information
+### 📊 Corpus Composition
 
-Early detection is critical to achieving improved treatment outcomes for child patients with congenital heart diseases (CHDs). Therefore, developing effective CHD detection techniques using low-cost and non-invasive pediatric electrocardiogram are highly desirable. We propose a deep learning approach for CHD detection, CHDdECG, which automatically extracts features from pediatric electrocardiogram signals and wavelet transformation characteristics, integrating them with human concept features. Trained with 65,869 cases, CHDdECG achieved ROC-AUC of 0.915 and 0.917 on real-world and external test sets containing 12,000 and 7,137 cases, respectively. Overall specificities were 0.881 and 0.937, respectively, with major CHD subtype specificities above 0.91. Notably, CHDdECG outperformed cardiologists in comparison, and the automatically extracted features from electrocardiogram were about 8 times more significant than human concept features, implying that CHDdECG find some knowledge beyond human cognition. Our study directly impacts CHD detection with pediatric electrocardiogram and highlights the potential of pediatric electrocardiogram for broader benefits.
+| Domain | Early Period | Mid Period | Late Period | Total Size |
+|--------|---------------|------------|-------------|------------|
+| **Literature** | 1919-1942 | 1945-1979 | 1980-2025 | ~1.5M chars/period |
+| **News Media** | 1881-1942 | 1945-1979 | 1980-present | ~1.5M chars/period |
+| **Textbooks** | 1919-1942 | 1945-1979 | 1980-present | ~100K chars/period |
 
---------------------
-## Requirements
+## 🗂️ Data Sources
 
-This code was tested on Python 3 with Tensorflow `2.6.0`
+### 1. Literary Materials
+- **Early Period (1919-1942)**: *Mahua New Literature Series* (《马华新文学大系》)
+- **Mid Period (1945-1979)**: *Mahua Literary Works Selection* (《马华文学作品选》), *Mahua Literature Series* (《马华文学大系》)
+- **Late Period (1980-2025)**: *Mahua Literature Series*, Mahua Literature Digital Library (www.mcldl.com)
 
-In addition, the packages we are calling now is as follows:
-- [x] tensorflow2.0     
-- [x] sklearn
-- [x] random
-- [x] scipy
-- [x] pandas
-- [x] numpy
-- [x] tabnet
-- [x] tensorflow_addons  
+**Genres**: Criticism, Novels, Plays, Prose, Historical Materials
 
-## Framework illustration
+### 2. News Media
+- **Early Period**: *Lat Pau* (《叻报》), *New National Daily* (《新国民日报》), *Sin Chew Daily* (《星洲日报》)
+- **Mid Period**: *Sin Chew Daily*, *Nanyang Siang Pau* (《南洋商报》)
+- **Late Period**: *Sin Chew Daily*, *Kwong Wah Yit Poh* (《光华日报》), *Oriental Daily* (《东方日报》)
 
-- **input**: `shape = (N, 5000, 9)`. The input tensor, a signal of 10 seconds should contain the 5000 points of the ECG tracings sampled at 500Hz both in the training and in the test set. The last dimension of the tensor contains points of the 9 different leads. The leads are ordered in the following order: `{I, II, III, AVR, AVL, AVF, V1, V3, V5}`. All signal are preprocessed with noise removal techniques before feeding it to the neural network model. 
-![example](https://github.com/shuaih720/CHDdECG/blob/main/Figures/ECG%20example.png)
-- **framework illustration**: ``CHDdECG.py``: Auxiliary module that defines the architecture of the deep neural network. The internal module structure is in the following files：``layers_Resblock.py``,``layers_TemporalAttention.py``,``layers_Transformer.py``,``layers_Tabnet.py``.
-![example1](https://github.com/shuaih720/CHDdECG/blob/main/Figures/An%20illustration%20of%20the%20deep%20learning%20based%20model.png)
-- **train and test**: ``main.py``:Script for training the neural network and generating the neural network predictions on a given dataset.
-- **output**: `shape = (N, 2)`. Each entry contains a probability between 0 and 1, and can be understood as the probability of a given abnormality to be present.
+### 3. Educational Textbooks
+- **Early Period**: *Nanyang Overseas Chinese History* (《南洋华侨历史》), *Wen Fan* (《文范》)
+- **Mid Period**: *Elementary Citizenship* (《初级公民》), *Modern Chinese* (《现代国语》)
+- **Late Period**: *Good Children Chinese* (《好儿童华文》), *Primary School Chinese* (《小学华文》)
 
-## Install from Github
+## 📁 Repository Structure
+
+## 🔧 Data Access
+
+### Sources
+- Mahua Literature Digital Library (www.mcldl.com)
+- Lianhe Zaobao Online
+- Kwong Wah Yit Poh Online
+- Sin Chew Online
+- Factiva Corpus
+- National University of Singapore Library
+- Nanyang Technological University Library
+
+### File Format
+- Text files (UTF-8 encoding)
+- XML metadata files
+- JSON bibliographic records
+
+## ⚡ Quick Start
+
 ```python
-python
->>> git clone https://github.com/shuaih720/CHDdECG
->>> cd CHDdECG
->>> python setup.py install
-```
-(Typical install time on a "normal" desktop computer: very variable)
+# Example: Loading corpus data
+import json
+import pandas as pd
 
-## Instructions for use
-```python
-python
->>> cd CHDdECG
->>> python import.py
->>> python layers_Tabnet.py
->>> python layers_Resblock.py
->>> python layers_TemporalAttention.py
->>> python layers_Transformer.py
->>> python CHDdECG.py
->>> python main.py
-```
-OR running the integrated version 
-```python
-python
->>> cd CHDdECG
->>> python Merged_CHD.py
-```
-Training the neural network and generating the neural network predictions on given datasets.
-## License
+def load_corpus_metadata():
+    with open('metadata/bibliographies.json', 'r', encoding='utf-8') as f:
+        return json.load(f)
 
-This project is covered under the Apache 2.0 License.
+# Access specific period data
+def get_literature_period(period):
+    base_path = f'corpus/literature/{period}/'
+    # Implementation details...
