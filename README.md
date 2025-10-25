@@ -51,22 +51,5 @@ According to Diao Yanbin (2018:161-174), the formation and development of Global
 - Nanyang Technological University Library
 
 ### File Format
-- Text files (UTF-8 encoding)
-- XML metadata files
-- JSON bibliographic records
+- Word original file
 
-## ⚡ Quick Start
-
-```python
-# Example: Loading corpus data
-import json
-import pandas as pd
-
-def load_corpus_metadata():
-    with open('metadata/bibliographies.json', 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-# Access specific period data
-def get_literature_period(period):
-    base_path = f'corpus/literature/{period}/'
-    # Implementation details...
